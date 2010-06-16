@@ -7,7 +7,7 @@ def prepare_project( _dir )
         if Dir.entries('.').size - 2 == 0
             f = File.new('.gitignore', 'w')
             f.close
-            return nil
+            return
         end
         
         Dir.entries('.').each do |item|
