@@ -1,0 +1,17 @@
+
+=====================================================================
+                   John's Useful Scripts -- Enjoy!
+=====================================================================
+
+Contents
+  1. git prepare
+  2. 
+
+
+Git Prepare (git_prepare.rb)
+   Purpose: prepare a project for submission to a git repository. The
+            script creates .gitifnore files for all empty directories
+            (in case your project depend on those directories, like a
+            cache directory)
+   Usage: call the script like 'ruby git_prepare.rb path/to/project/folder'
+          Note: do not use an absolute path
