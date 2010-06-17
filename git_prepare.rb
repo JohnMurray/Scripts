@@ -19,4 +19,4 @@ def prepare_project( _dir )
     
 end
 
-prepare_project( Dir.pwd + '/' + ARGV[0] )
+prepare_project( Dir.pwd + '/' + ARGV[0].to_s )
