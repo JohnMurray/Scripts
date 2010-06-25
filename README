@@ -4,14 +4,23 @@
 =====================================================================
 
 Contents
-  1. git prepare
-  2. 
+  1. git commit prepare
+  2. svn production prepare
+  3. 
 
 
-Git Prepare (git_prepare.rb)
+Git Commit Prepare (git_commit_prepare.rb)
    Purpose: prepare a project for submission to a git repository. The
             script creates .gitifnore files for all empty directories
             (in case your project depend on those directories, like a
             cache directory)
-   Usage: call the script like 'ruby git_prepare.rb path/to/project/folder'
+   Usage: call the script like 'ruby git_commit_prepare.rb path/to/project/folder'
+          Note: do not use an absolute path
+
+SVN Production Prepare
+   Purpose: prepare a directory structure that has previously been
+            used with SVN for a production environment. Essentially
+            all this script does is crawl your directory and remove
+            all .svn folders
+   Usage: call teh script like 'ruby svn_production_prepare.rb path/to/project/folder'
           Note: do not use an absolute path
