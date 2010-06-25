@@ -1,4 +1,3 @@
-
 =====================================================================
                    John's Useful Scripts -- Enjoy!
 =====================================================================
@@ -16,6 +15,7 @@ Git Commit Prepare (git_commit_prepare.rb)
             cache directory)
    Usage: call the script like 'ruby git_commit_prepare.rb path/to/project/folder'
           Note: do not use an absolute path
+
 
 SVN Production Prepare
    Purpose: prepare a directory structure that has previously been
