@@ -5,7 +5,8 @@
 Contents
   1. git commit prepare
   2. svn production prepare
-  3. 
+  3. absolute directory
+  4. 
 
 
 Git Commit Prepare (git_commit_prepare.rb)
@@ -17,10 +18,20 @@ Git Commit Prepare (git_commit_prepare.rb)
           Note: do not use an absolute path
 
 
-SVN Production Prepare
+SVN Production Prepare(svn_production_prepare.rb)
    Purpose: prepare a directory structure that has previously been
             used with SVN for a production environment. Essentially
             all this script does is crawl your directory and remove
             all .svn folders
    Usage: call teh script like 'ruby svn_production_prepare.rb path/to/project/folder'
           Note: do not use an absolute path
+
+
+Absolute Directory (abs_dir.rb)
+    Purpose: find an absolute direcotry path given a relative path
+             (from where the program is currentl executing).
+    Usage: include into your ruby file and call abs_dir('path')
+           where path is a relative path to either a file or a
+           directory
+    Note: if you are using it to get the path to a file, the path
+          may not be pretty (ex: /var/www/app/code/controller/../../media/js.js)
