@@ -3,6 +3,9 @@
 ## and to display (for each feed) the last M number of posts. This
 ## script was created for showing a top list of news entries of 
 ## Hacker News via GeekTools on my Mac desktop. 
+##
+## To add news items, add to RSS_FEEDS array. To modify the number
+## of items shown per feed, you need to modify the ENTRIES constant
 ##----
 
 
