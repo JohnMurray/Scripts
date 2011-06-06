@@ -6,7 +6,8 @@ Contents
   1. git commit prepare
   2. svn production prepare
   3. absolute directory
-  4. 
+  4. rss-previewer
+  5. 
 
 
 Git Commit Prepare (git_commit_prepare.rb)
@@ -35,3 +36,8 @@ Absolute Directory (abs_dir.rb)
            directory
     Note: if you are using it to get the path to a file, the path
           may not be pretty (ex: /var/www/app/code/controller/../../media/js.js)
+
+
+RSS-Previewer
+    Purpose: view top items in RSS feed
+    Usage: view notes in top of file
