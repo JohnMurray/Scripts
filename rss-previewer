@@ -1,0 +1,83 @@
+##----
+## This purpose of this file is to retrieve N number of RSS feeds
+## and to display (for each feed) the last M number of posts. This
+## script was created for showing a top list of news entries of 
+## Hacker News via GeekTools on my Mac desktop. 
+##----
+
+
+require 'rubygems'
+require 'net/http'
+require 'uri'
+require 'nokogiri'
+
+
+# define all of the RSS feeds to gather
+RSS_FEEDS = [
+  'http://news.ycombinator.com/rss'
+]
+# define the number of entries to grab from each feed
+ENTRIES = 10
+
+
+##----
+## Start the program
+##----
+def main()
+  # collect all of the raw feeds
+  raw_feeds = []
+  RSS_FEEDS.each {|f| raw_feeds << download_file(f) }
+  raw_feeds.reject! {|f| f == nil }
+
+  # process all of the raw feeds
+  feeds = raw_feeds.map {|f| f = parse_feed f }
+
+  # output each of the feeds
+  feeds.each do |feed|
+    puts feed[:title]
+    puts (feed[:article_titles].count != 0 ? "\t" + feed[:article_titles].join("\n\t") : "\t(no articles")
+  end
+end
+
+
+##----
+## Downloads the RSS Feed for a given url and returns the raw
+## strings
+##----
+def download_file(url)
+  resp = nil
+  uri = URI.parse url
+  Net::HTTP.start(uri.host) do |http|
+    resp = http.get(uri.path)
+    resp = resp.code.to_i == 200 ? resp.body : nil
+  end
+  resp
+end
+
+
+##----
+## Parses the raw RSS Feed into a native Ruby hash containing
+## all of the data
+##----
+def parse_feed(raw_feed)
+  # define the return data structure
+  result = {
+    :title => nil,
+    :article_titles => []
+  }
+  # parse the document and collect the channel title and article titles
+  parser = Nokogiri::XML::Document.parse(raw_feed)
+  channel_title = parser.xpath('/rss/channel/title')
+  result[:title] = channel_title.first.content if !channel_title.empty?
+  i = 0
+  parser.xpath('/rss/channel/item/title').each do |title|
+    result[:article_titles] << title.content
+    i += 1
+    break if i == ENTRIES
+  end
+  result
+end
+
+
+
+main() if $0 == __FILE__
