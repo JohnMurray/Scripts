@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 ##----
 ## This purpose of this file is to retrieve N number of RSS feeds
 ## and to display (for each feed) the last M number of posts. This
