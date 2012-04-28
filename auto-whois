@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+
+## 
+## Uses the whois gem to do a WHOIS lookup by taking the first
+## command line argument and appending it with a huge list of
+## TLDs. This tool is really nice if you have an idea for a
+## domain name and you quickly want to see what TLDs are available
+## for that name. 
+## 
+
+require 'whois'
+
+
+TLDS = [
+  'com',
+  'info',
+  'de',
+  'eu.com',
+  'de.com',
+  'net',
+  'biz',
+  'us',
+  'me',
+  'bz',
+  'co',
+  'tel',
+  'us.com',
+  'name',
+  'cc',
+  'org',
+  'eu',
+  'tv',
+  'am',
+  'gs',
+  'mobi',
+  'co.uk',
+  'pro',
+  'uk.com',
+  'asia',
+  'cn.com',
+  'im',
+  'la',
+  'tc',
+  'be',
+  'cx',
+  'in',
+  'ms',
+  'tw',
+  'br.com',
+  'es',
+  'co.in',
+  'com.mx',
+  'com.tw',
+  'ca',
+  'gd',
+  'jpn.com',
+  'co.nz',
+  'vg',
+  'cc',
+  'gs',
+  'kr.com',
+  'se.com',
+  'ws',
+  'co',
+  'nu',
+  'ac',
+  'sg',
+  'io',
+  'sh',
+  'jp',
+  'tk',
+  'nl'
+]
+
+
+domain_name = ARGV.first
+client = Whois::Client.new
+TLDS.each do |tld|
+  begin
+    record = client.query("#{domain_name}.#{tld}")
+    puts "#{domain_name}.#{tld} is available" if record.available?
+  rescue Whois::ParserError
+    puts "## Unkown entry #{domain_name}.#{tld}"
+  rescue Timeout::Error
+    puts "## Timeout for #{domain_name}.#{tld}"
+  rescue Whois::WebInterfaceError
+    puts "## Not API for #{domain_name}.#{tld}"
+  end
+end
