@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Yes, you read the name of this command correctly. As many machines as
+# I switch around on during the day, sometimes I forget what distro and
+# version is running on the current machine. Think it's stupd? Then don't
+# use it.
+
+
+# check for Debian
+if [ -f /etc/debian_version ] ; then
+  echo 'Debian ' `cat /etc/debian_version`;
+fi
