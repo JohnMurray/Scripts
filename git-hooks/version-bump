@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+VERSION_FILE_NAME = '.version'
+
+
+$stdout.puts 'Version Bumping...'
+
+
+
+# load the dir information
+current_dir  = File.expand_path('../', __FILE__)
+project_dir  = File.expand_path('../../', current_dir)
+version_file = File.join(project_dir, VERSION_FILE_NAME)
+
+# open and read the version file
+file     = File.open(version_file)
+contents = file.read
+
+# remove the leading 'v' in the version name
+contents.gsub(/^v/, '')
+
+# split the version out into its parts
+major, minor, revision_number = contents.split('.').map{|c| c.to_i }
+
+# increment the revision_number and generate the version-string
+revision_number += 1
+version = "v#{major}.#{minor}.#{revision_number}"
+
+# write out the changes
+file.close
+File.open(version_file, 'w') {|f| f.write(version) }
+
+# stage these chagnes in the current commit
+`git add #{version_file}`
+
+
+
+
+$stdout.puts 'Bumped!'
