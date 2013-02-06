@@ -1,8 +1,13 @@
 #!/usr/bin/python
 
 ## 
-## Program to print out the memory stats for my Mac (OS X 10.6) computer.
+## Program to print out the memory stats for my Mac computer.
 ## Nice to output via GeekTools for display on the desktop.
+##
+## Tested On:
+##   10.6
+##   10.7
+##   10.8
 ## 
 
 import subprocess
